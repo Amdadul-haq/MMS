@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Mosque Management System</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="full_name_hint">Full Name</string>
+    <string name="login_button_text">Login</string>
+    <string name="signup_button_text">Sign Up</string>
+    <string name="logo_description" />
+    <string name="welcome_text">Mosque Management System</string>
+    <string name="signup_text">Don\'t have an account? Sign Up</string>
+    <string name="login_text">Already have an account? Login</string>
+
+    <string-array name="donation_types">
+        <item>Regular</item>
+        <item>Moushumi Collection</item>
+        <item>Eid Collection</item>
+        <item>Others</item>
+    </string-array>
+    <string-array name="donation_months">
+        <item>January 2025</item>
+        <item>February 2025</item>
+        <item>March 2025</item>
+        <item>April 2025</item>
+        <item>May 2025</item>
+        <item>June 2025</item>
+        <item>July 2025</item>
+        <item>August 2025</item>
+        <item>September 2025</item>
+        <item>October 2025</item>
+        <item>November 2025</item>
+        <item>December 2025</item>
+    </string-array>
+
+</resources>

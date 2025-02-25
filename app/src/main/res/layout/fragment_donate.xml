@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="Donation Form"
+            android:gravity="center"/>
+
+        <!-- Donor Name -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Donor Name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDonorName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:inputType="textPersonName"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Donation Type -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Donation Type"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerDonationType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/donation_types"
+            android:padding="16dp"
+           />
+
+        <!-- Donation Month -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Donation Month"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerDonationMonth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/donation_months"
+            android:padding="16dp"
+            android:spinnerMode="dropdown" />
+
+        <!-- Amount -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Amount">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:inputType="numberDecimal"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Payment Method -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Payment Method"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp"/>
+
+        <RadioGroup
+            android:id="@+id/radioGroupPayment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/rbBkash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bkash"/>
+
+            <RadioButton
+                android:id="@+id/rbNagad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nagad"/>
+
+            <RadioButton
+                android:id="@+id/rbRocket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rocket"/>
+
+            <RadioButton
+                android:id="@+id/rbByHand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="By Hand"/>
+        </RadioGroup>
+
+        <!-- Continue Button -->
+        <Button
+            android:id="@+id/btnContinue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Continue"
+            android:layout_marginTop="16dp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/black"
+            android:textColor="@android:color/white"/>
+
+    </LinearLayout>
+
+</ScrollView>
