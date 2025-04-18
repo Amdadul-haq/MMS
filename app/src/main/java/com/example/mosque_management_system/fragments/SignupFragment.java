@@ -61,7 +61,7 @@ public class SignupFragment extends Fragment {
             return;
         }
 
-        Retrofit retrofit = RetrofitClient.getRetrofitInstance();
+        Retrofit retrofit = RetrofitClient.getRetrofitInstance(null);
         AuthAPI authAPI = retrofit.create(AuthAPI.class);
 
         Call<SignupResponse> call = authAPI.signupUser(new SignupRequest(fullName, email, password));

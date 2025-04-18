@@ -1,8 +1,9 @@
 package com.example.mosque_management_system.fragments;
 
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +13,17 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
 import com.example.mosque_management_system.R;
 import com.example.mosque_management_system.api.DonationAPI;
 import com.example.mosque_management_system.models.DonationRequest;
 import com.example.mosque_management_system.models.DonationResponse;
 import com.example.mosque_management_system.network.RetrofitClient;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -55,7 +59,10 @@ public class DonateFragment extends Fragment {
         btnContinue = view.findViewById(R.id.btnContinue);
 
         // Initialize Retrofit API
-        Retrofit retrofit = RetrofitClient.getRetrofitInstance();
+        SharedPreferences prefs = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+        String token = prefs.getString("jwt_token", null);
+
+        Retrofit retrofit = RetrofitClient.getRetrofitInstance(token);
         donationAPI = retrofit.create(DonationAPI.class);
 
         // Continue Button Click
@@ -68,32 +75,39 @@ public class DonateFragment extends Fragment {
         String donationType = spinnerDonationType.getSelectedItem().toString();
         String donationMonth = spinnerDonationMonth.getSelectedItem().toString();
 
-        // Get Selected Payment Method
-        int selectedPaymentId = radioGroupPayment.getCheckedRadioButtonId();
-        if (selectedPaymentId == -1) {
-            Toast.makeText(getActivity(), "Please select a payment method", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        RadioButton selectedPaymentButton = getView().findViewById(selectedPaymentId);
-        String paymentMethod = selectedPaymentButton.getText().toString();
-
         if (donorName.isEmpty() || amount.isEmpty()) {
             Toast.makeText(getActivity(), "Please fill all fields", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (paymentMethod.equals("By Hand")) {
+        int selectedPaymentId = radioGroupPayment.getCheckedRadioButtonId();
+        if (selectedPaymentId == -1) {
+            Toast.makeText(getActivity(), "Please select a payment method", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        View rootView = getView();
+        if (rootView == null) {
+            Toast.makeText(getActivity(), "Unexpected error occurred", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        RadioButton selectedPaymentButton = rootView.findViewById(selectedPaymentId);
+        String paymentMethod = selectedPaymentButton.getText().toString();
+
+        if (paymentMethod.equalsIgnoreCase("By Hand")) {
             showConfirmationDialog(donorName, amount, donationType, donationMonth);
         } else {
-            Toast.makeText(getActivity(), "Other payment methods will be added soon", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), paymentMethod + " will be available soon", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void showConfirmationDialog(String donorName, String amount, String donationType, String donationMonth) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Confirm Donation")
+        new AlertDialog.Builder(getActivity())
+                .setTitle("Confirm Donation")
                 .setMessage("Donor: " + donorName + "\nAmount: " + amount + " BDT\nType: " + donationType + "\nMonth: " + donationMonth + "\n\nAre you sure you want to donate?")
-                .setPositiveButton("Yes", (dialog, which) -> submitDonation(donorName, amount, donationType, donationMonth, "By Hand"))
+                .setPositiveButton("Yes", (dialog, which) ->
+                        submitDonation(donorName, amount, donationType, donationMonth, "By Hand"))
                 .setNegativeButton("No", (dialog, which) -> dialog.dismiss())
                 .show();
     }

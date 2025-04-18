@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/card_background"
+    android:orientation="horizontal"
+    android:layout_margin="10dp"
+    android:padding="8dp">
+
+    <!-- Donor Name -->
+    <TextView
+        android:id="@+id/donorNameTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Donor Name" />
+
+    <!-- Donation Type -->
+    <TextView
+        android:id="@+id/donationTypeTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Donation Type" />
+
+    <!-- Amount -->
+    <TextView
+        android:id="@+id/amountTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Amount" />
+
+    <!-- Donation Month -->
+    <TextView
+        android:id="@+id/donationMonthTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Month" />
+
+    <!-- Payment Method -->
+    <TextView
+        android:id="@+id/paymentMethodTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Payment Method" />
+
+</LinearLayout>

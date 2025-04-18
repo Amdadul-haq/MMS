@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Mosque Management System</string>
+    <string name="navigation_drawer_open">Open Drawer</string>
+    <string name="navigation_drawer_close">Close Drawer</string>
     <string name="email_hint">Email</string>
     <string name="password_hint">Password</string>
     <string name="full_name_hint">Full Name</string>
@@ -9,6 +11,17 @@
     <string name="welcome_text">Mosque Management System</string>
     <string name="signup_text">Don\'t have an account? Sign Up</string>
     <string name="login_text">Already have an account? Login</string>
+    <string name="donation_form">Donation Form</string>
+    <string name="donor_name">Donor Name</string>
+    <string name="donation_type">Donation Type</string>
+    <string name="donation_month">Donation Month</string>
+    <string name="amount">Amount</string>
+    <string name="select_payment_method">Select Payment Method</string>
+    <string name="bkash">Bkash</string>
+    <string name="nagad">Nagad</string>
+    <string name="rocket">Rocket</string>
+    <string name="by_hand">By Hand</string>
+    <string name="continue_txt">Continue</string>
 
     <string-array name="donation_types">
         <item>Regular</item>

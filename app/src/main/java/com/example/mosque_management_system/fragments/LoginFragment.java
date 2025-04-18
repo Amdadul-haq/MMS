@@ -1,6 +1,7 @@
 package com.example.mosque_management_system.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,15 +12,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.mosque_management_system.DashboardActivity;
 import com.example.mosque_management_system.MainActivity;
 import com.example.mosque_management_system.R;
 import com.example.mosque_management_system.api.AuthAPI;
 import com.example.mosque_management_system.models.LoginRequest;
 import com.example.mosque_management_system.models.LoginResponse;
 import com.example.mosque_management_system.network.RetrofitClient;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -60,24 +65,32 @@ public class LoginFragment extends Fragment {
             return;
         }
 
-        Retrofit retrofit = RetrofitClient.getRetrofitInstance();
+        Retrofit retrofit = RetrofitClient.getRetrofitInstance(null);
         AuthAPI authAPI = retrofit.create(AuthAPI.class);
 
         Call<LoginResponse> call = authAPI.loginUser(new LoginRequest(email, password));
         call.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    // Save login status
+                if (response.isSuccessful() && response.body() != null && response.body().isSuccess()) {
+
+                    String token = response.body().getToken();
+                    String fullName = response.body().getFullName();
+
+                    // Save token and fullName
                     SharedPreferences prefs = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = prefs.edit();
                     editor.putBoolean("isLoggedIn", true);
+                    editor.putString("jwt_token", token);
+                    editor.putString("fullName", fullName);
                     editor.apply();
 
                     Toast.makeText(getActivity(), "Login Successful!", Toast.LENGTH_SHORT).show();
 
-                    // Navigate to Dashboard
-                    ((MainActivity) getActivity()).navigateToDashboard();
+                    // Navigate to MainActivity (fresh start)
+                    Intent intent = new Intent(getActivity(), DashboardActivity.class);
+                    startActivity(intent);
+                    requireActivity().finish(); // ❗ Prevent back to login screen
                 } else {
                     Toast.makeText(getActivity(), "Invalid email or password", Toast.LENGTH_SHORT).show();
                 }

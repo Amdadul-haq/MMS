@@ -14,4 +14,23 @@ public class DonationRequest {
         this.amount = amount;
         this.paymentMethod = paymentMethod;
     }
+    public String getDonorName() {
+        return donorName;
+    }
+
+    public String getDonationType() {
+        return donationType;
+    }
+
+    public String getDonationMonth() {
+        return donationMonth;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
 }

@@ -1,3 +1,4 @@
+
 package com.example.mosque_management_system.fragments;
 
 import android.os.Bundle;
@@ -21,3 +22,4 @@ public class ProfileFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 }
+

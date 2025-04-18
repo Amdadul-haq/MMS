@@ -4,123 +4,166 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:fillViewport="true">
+    android:padding="24dp"
+    android:fillViewport="true"
+    android:background="@color/light_gray"
+    android:scrollbars="none"
+    tools:context=".fragments.DonateFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/white">
+        android:background="@drawable/donate_background"
+        android:padding="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:elevation="4dp"
+        android:radius="12dp">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="30dp"
             android:textSize="20sp"
+            android:textColor="@color/black"
             android:textStyle="bold"
-            android:text="Donation Form"
+            android:text="@string/donation_form"
             android:gravity="center"/>
 
         <!-- Donor Name -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Donor Name">
+            android:hint="@string/donor_name"
+            android:layout_marginBottom="16dp"
+            app:boxStrokeColor="@color/primary"
+            app:hintTextColor="@color/primary">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etDonorName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:inputType="textPersonName"/>
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:padding="12dp"
+                android:inputType="textPersonName"
+                android:importantForAccessibility="yes"
+                android:contentDescription="Donor Name"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Donation Type -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Donation Type"
+            android:text="@string/donation_type"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:layout_marginTop="12dp"/>
+            android:textColor="@color/black"
+            android:layout_marginBottom="8dp"/>
 
         <Spinner
             android:id="@+id/spinnerDonationType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:background="@android:color/white"
+            android:importantForAccessibility="yes"
             android:entries="@array/donation_types"
-            android:padding="16dp"
-           />
+            android:contentDescription="Donation Type"/>
 
         <!-- Donation Month -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Donation Month"
+            android:text="@string/donation_month"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:layout_marginTop="12dp"/>
+            android:textColor="@color/black"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="16dp"/>
 
         <Spinner
             android:id="@+id/spinnerDonationMonth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:padding="12dp"
+            android:importantForAccessibility="yes"
             android:entries="@array/donation_months"
-            android:padding="16dp"
-            android:spinnerMode="dropdown" />
+            android:contentDescription="Donation Month"/>
 
         <!-- Amount -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Amount">
+            android:hint="@string/amount"
+            android:layout_marginTop="16dp"
+            app:boxStrokeColor="@color/primary"
+            app:hintTextColor="@color/primary">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etAmount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:inputType="numberDecimal"/>
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:padding="12dp"
+                android:inputType="numberDecimal"
+                android:importantForAccessibility="yes"
+                android:contentDescription="Donation Amount"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Payment Method -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select Payment Method"
+            android:text="@string/select_payment_method"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:layout_marginTop="12dp"/>
+            android:textColor="@color/black"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"/>
 
         <RadioGroup
             android:id="@+id/radioGroupPayment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginBottom="16dp">
 
             <RadioButton
                 android:id="@+id/rbBkash"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bkash"/>
+                android:text="@string/bkash"
+                android:textColor="@color/black"
+                android:padding="12dp"/>
 
             <RadioButton
                 android:id="@+id/rbNagad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nagad"/>
+                android:text="@string/nagad"
+                android:textColor="@color/black"
+                android:padding="12dp"/>
 
             <RadioButton
                 android:id="@+id/rbRocket"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rocket"/>
+                android:text="@string/rocket"
+                android:textColor="@color/black"
+                android:padding="12dp"/>
 
             <RadioButton
                 android:id="@+id/rbByHand"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="By Hand"/>
+                android:text="@string/by_hand"
+                android:textColor="@color/black"
+                android:padding="12dp"/>
         </RadioGroup>
 
         <!-- Continue Button -->
@@ -128,12 +171,14 @@
             android:id="@+id/btnContinue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Continue"
-            android:layout_marginTop="16dp"
+            android:text="@string/continue_txt"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
             android:textStyle="bold"
-            android:backgroundTint="@color/black"
-            android:textColor="@android:color/white"/>
-
+            android:backgroundTint="@color/primary"
+            android:layout_marginTop="16dp"
+            android:importantForAccessibility="yes"
+            android:contentDescription="Continue Donation"/>
     </LinearLayout>
 
 </ScrollView>

@@ -1,9 +1,15 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Base Theme -->
     <style name="Base.Theme.Mosque_Management_System" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/dark_blue</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/dark_green</item>
+        <item name="colorTertiary">@color/primary</item>
+        <item name="colorSurface">@color/light_gray</item>
+        <item name="android:statusBarColor">@color/primary</item>
     </style>
 
+    <!-- App Theme -->
     <style name="Theme.Mosque_Management_System" parent="Base.Theme.Mosque_Management_System" />
 </resources>

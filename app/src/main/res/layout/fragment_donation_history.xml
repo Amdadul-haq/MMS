@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white">
+
+        <!-- Table Headers -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:background="@color/light_gray">
+
+            <TextView
+                android:text="Donor"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+
+            <TextView
+                android:text="Type"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+
+            <TextView
+                android:text="Amount"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+
+            <TextView
+                android:text="Month"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+
+            <TextView
+                android:text="Method"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+        </LinearLayout>
+
+        <!-- RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewDonations"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1" /> <!-- RecyclerView takes up remaining space -->
+
+        <!-- TextView for "No donations found" message -->
+        <TextView
+            android:id="@+id/tvNoDonations"
+            android:layout_width="224dp"
+            android:layout_height="99dp"
+            android:gravity="center"
+            android:text="No donations found"
+            android:textColor="@android:color/darker_gray"
+            android:visibility="gone" /> <!-- Initially hidden -->
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -13,6 +13,9 @@ public interface AuthAPI {
 
     @POST("api/auth/login")
     Call<LoginResponse> loginUser(@Body LoginRequest loginRequest);
+    @POST("api/auth/logout")
+    Call<Void> logoutUser();
+
 
     @POST("api/auth/signup")
     Call<SignupResponse> signupUser(@Body SignupRequest signupRequest);
