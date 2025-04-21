@@ -1,5 +1,6 @@
 package com.example.mosque_management_system.fragments;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -55,7 +56,6 @@ public class LoginFragment extends Fragment {
 
         return view;
     }
-
     private void loginUser() {
         String email = emailInput.getText().toString().trim();
         String password = passwordInput.getText().toString().trim();
@@ -65,6 +65,13 @@ public class LoginFragment extends Fragment {
             return;
         }
 
+        // Initialize loading dialog
+        Dialog loadingDialog = new Dialog(getActivity());
+        loadingDialog.setContentView(R.layout.progress_dialog);
+        loadingDialog.setCancelable(false);
+        loadingDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        loadingDialog.show();
+
         Retrofit retrofit = RetrofitClient.getRetrofitInstance(null);
         AuthAPI authAPI = retrofit.create(AuthAPI.class);
 
@@ -72,12 +79,11 @@ public class LoginFragment extends Fragment {
         call.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                loadingDialog.dismiss();
                 if (response.isSuccessful() && response.body() != null && response.body().isSuccess()) {
-
                     String token = response.body().getToken();
                     String fullName = response.body().getFullName();
 
-                    // Save token and fullName
                     SharedPreferences prefs = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = prefs.edit();
                     editor.putBoolean("isLoggedIn", true);
@@ -87,10 +93,9 @@ public class LoginFragment extends Fragment {
 
                     Toast.makeText(getActivity(), "Login Successful!", Toast.LENGTH_SHORT).show();
 
-                    // Navigate to MainActivity (fresh start)
                     Intent intent = new Intent(getActivity(), DashboardActivity.class);
                     startActivity(intent);
-                    requireActivity().finish(); // ❗ Prevent back to login screen
+                    requireActivity().finish();
                 } else {
                     Toast.makeText(getActivity(), "Invalid email or password", Toast.LENGTH_SHORT).show();
                 }
@@ -98,8 +103,11 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
+                loadingDialog.dismiss();
                 Toast.makeText(getActivity(), "Login Failed: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
+
 }
+
