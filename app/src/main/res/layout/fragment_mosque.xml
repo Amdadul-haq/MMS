@@ -1,15 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
-    <TextView
-        android:id="@+id/nav_mosque"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="welcome to mosque page"
-        android:textSize="20dp"
-        android:gravity="center"
-        android:textAlignment="center"/>
+    android:background="#F7F9FC">
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:gravity="center_horizontal">
+
+        <!-- Mosque Info Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="6dp"
+            android:layout_marginBottom="24dp"
+            android:backgroundTint="#FFFFFF">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp"
+                android:gravity="center_horizontal">
+
+                <ImageView
+                    android:id="@+id/mosque_icon"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/ic_mosque"
+                    android:layout_marginBottom="12dp"
+                    app:tint="@color/primaryColor" />
+
+                <TextView
+                    android:id="@+id/mosque_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="খিয়ার পাড়া বকুলতলা জামে মসজিদ"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#2C3E50"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/mosque_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="123 Main Street, Dhaka"
+                    android:textColor="#555"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Feature Buttons -->
+        <Button
+            android:id="@+id/btn_imam_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="👤 Imam Information"
+            android:backgroundTint="@color/primaryColor"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="16dp" />
+
+        <Button
+            android:id="@+id/btn_gallery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🖼️ Mosque Gallery"
+            android:backgroundTint="@color/primaryColor"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="16dp" />
+
+        <Button
+            android:id="@+id/btn_contact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📞 Contact Mosque"
+            android:backgroundTint="@color/primaryColor"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+</ScrollView>
