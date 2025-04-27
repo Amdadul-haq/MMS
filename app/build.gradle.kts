@@ -44,7 +44,10 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
+    implementation(libs.gridlayout)
     implementation(libs.glide)
     annotationProcessor(libs.compiler)
+    implementation(libs.viewpager2)
+    implementation(libs.dotsindicator) // For dots indicator
 
 }

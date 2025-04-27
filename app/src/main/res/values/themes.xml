@@ -12,4 +12,5 @@
 
     <!-- App Theme -->
     <style name="Theme.Mosque_Management_System" parent="Base.Theme.Mosque_Management_System" />
+    <item name="fontFamily" type="font">@font/poppins</item>
 </resources>

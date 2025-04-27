@@ -81,10 +81,6 @@ public class UpdateProfileFragment extends Fragment {
         return view;
     }
 
-//    private void openFileChooser() {
-//        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//        startActivityForResult(intent, PICK_IMAGE_REQUEST);
-//    }
 private void openFileChooser() {
     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
         // Android 13+
@@ -133,47 +129,7 @@ private void openFileChooser() {
         }
     }
 
-//    private void updateProfile() {
-//        String fullName = editFullName.getText().toString().trim();
-//
-//        if (fullName.isEmpty()) {
-//            Toast.makeText(getContext(), "Full name is required", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//
-//        File imageFile = null;
-//        MultipartBody.Part imagePart = null;
-//
-//        if (imageUri != null) {
-//            String filePath = RealPathUtil.getRealPathFromURI(requireContext(), imageUri);
-//            imageFile = new File(filePath);
-//
-//            RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), imageFile);
-//            imagePart = MultipartBody.Part.createFormData("profileImage", imageFile.getName(), requestFile);
-//        }
-//
-//        // For image only upload
-//        UserAPI userAPI = RetrofitClient.getRetrofitInstance(token).create(UserAPI.class);
-//        Call<UserProfileResponse> call = userAPI.uploadProfileImage(imagePart);
-//
-//        call.enqueue(new Callback<UserProfileResponse>() {
-//            @Override
-//            public void onResponse(Call<UserProfileResponse> call, Response<UserProfileResponse> response) {
-//                if (response.isSuccessful()) {
-//                    Toast.makeText(getContext(), "Profile updated successfully!", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    Toast.makeText(getContext(), "Failed to update profile.", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<UserProfileResponse> call, Throwable t) {
-//                Toast.makeText(getContext(), "Error: " + t.getMessage(), Toast.LENGTH_LONG).show();
-//            }
-//        });
-//
-//        // If you also want to update full name: call another API for fullName update if available
-//    }
+
 private void updateProfile() {
     String fullName = editFullName.getText().toString().trim();
 
