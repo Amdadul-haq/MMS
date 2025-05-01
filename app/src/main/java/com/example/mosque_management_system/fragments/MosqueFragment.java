@@ -5,11 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
 import com.example.mosque_management_system.R;
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 
 public class MosqueFragment extends Fragment {
@@ -25,11 +26,11 @@ public class MosqueFragment extends Fragment {
 
         // Find views
         MaterialCardView mosqueInfoCard = view.findViewById(R.id.mosque_info_card);
-        MaterialButton btnImamInfo = view.findViewById(R.id.btn_imam_info);
-        MaterialButton btnGallery = view.findViewById(R.id.btn_gallery);
-        MaterialButton btnContact = view.findViewById(R.id.btn_contact);
+        MaterialCardView cardImamInfo = view.findViewById(R.id.card_imam_info);
+        MaterialCardView cardGallery = view.findViewById(R.id.card_gallery);
+        MaterialCardView cardContact = view.findViewById(R.id.card_contact);
 
-        // Card animation
+        // Animate mosque info card
         mosqueInfoCard.setAlpha(0f);
         mosqueInfoCard.setTranslationY(100f);
         mosqueInfoCard.animate()
@@ -39,19 +40,33 @@ public class MosqueFragment extends Fragment {
                 .setInterpolator(new AccelerateDecelerateInterpolator())
                 .start();
 
-        // Button animations with staggered effect
-        View[] buttons = {btnImamInfo, btnGallery, btnContact};
-        for (int i = 0; i < buttons.length; i++) {
-            buttons[i].setAlpha(0f);
-            buttons[i].setTranslationY(50f);
-            buttons[i].animate()
+        // Animate feature cards with staggered effect
+        MaterialCardView[] featureCards = {cardImamInfo, cardGallery, cardContact};
+        for (int i = 0; i < featureCards.length; i++) {
+            MaterialCardView card = featureCards[i];
+            card.setAlpha(0f);
+            card.setTranslationY(60f);
+            card.animate()
                     .alpha(1f)
                     .translationY(0f)
-                    .setDuration(400)
-                    .setStartDelay(200 + (i * 100))
+                    .setStartDelay(300 + (i * 150))
+                    .setDuration(500)
                     .setInterpolator(new AccelerateDecelerateInterpolator())
                     .start();
         }
+
+        // TODO: Set onClickListeners if needed
+        cardImamInfo.setOnClickListener(v -> {
+            // Navigate to Imam Info screen
+        });
+
+        cardGallery.setOnClickListener(v -> {
+            // Navigate to Gallery screen
+        });
+
+        cardContact.setOnClickListener(v -> {
+            // Show Contact information
+        });
 
         return view;
     }
