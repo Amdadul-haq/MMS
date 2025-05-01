@@ -30,6 +30,16 @@
         <item>Eid Collection</item>
         <item>Others</item>
     </string-array>
+    <string-array name="donation_amount_ranges">
+        <item>All</item>
+        <item>Less than 50</item>
+        <item>50 to 100</item>
+        <item>100 to 200</item>
+        <item>300 to 500</item>
+        <item>500 to 1000</item>
+        <item>More than 1000</item>
+    </string-array>
+
     <string-array name="donation_months">
          <item>All</item>
         <item>January 2025</item>
