@@ -29,6 +29,7 @@ public class MosqueFragment extends Fragment {
         MaterialCardView cardImamInfo = view.findViewById(R.id.card_imam_info);
         MaterialCardView cardGallery = view.findViewById(R.id.card_gallery);
         MaterialCardView cardContact = view.findViewById(R.id.card_contact);
+        MaterialCardView cardHistory = view.findViewById(R.id.card_history);
 
         // Animate mosque info card
         mosqueInfoCard.setAlpha(0f);
@@ -41,7 +42,7 @@ public class MosqueFragment extends Fragment {
                 .start();
 
         // Animate feature cards with staggered effect
-        MaterialCardView[] featureCards = {cardImamInfo, cardGallery, cardContact};
+        MaterialCardView[] featureCards = {cardImamInfo, cardGallery, cardContact,cardHistory};
         for (int i = 0; i < featureCards.length; i++) {
             MaterialCardView card = featureCards[i];
             card.setAlpha(0f);
@@ -66,6 +67,9 @@ public class MosqueFragment extends Fragment {
 
         cardContact.setOnClickListener(v -> {
             // Show Contact information
+        });
+        cardHistory.setOnClickListener(v ->{
+            //show History information
         });
 
         return view;
