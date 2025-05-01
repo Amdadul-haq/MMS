@@ -1,34 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".fragments.DonationHistoryFragment">
 
     <LinearLayout
+        android:id="@+id/filterLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/white">
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="8dp">
 
-        <!-- RecyclerView -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewDonations"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            android:layout_weight="1" /> <!-- RecyclerView takes up remaining space -->
+        <Spinner
+            android:id="@+id/spinnerDonationType"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/primary"
+            android:spinnerMode="dropdown" />
 
-        <!-- TextView for "No donations found" message -->
-        <TextView
-            android:id="@+id/tvNoDonations"
-            android:layout_width="224dp"
-            android:layout_height="99dp"
-            android:gravity="center"
-            android:text="No donations found"
-            android:textColor="@android:color/darker_gray"
-            android:visibility="gone" /> <!-- Initially hidden -->
-
+        <Spinner
+            android:id="@+id/spinnerDonationMonth"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/primary"
+            android:spinnerMode="dropdown" />
     </LinearLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewDonations"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/filterLayout"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/tvNoDonations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="No donations found"
+        android:textColor="@android:color/darker_gray"
+        android:visibility="gone" />
 </RelativeLayout>

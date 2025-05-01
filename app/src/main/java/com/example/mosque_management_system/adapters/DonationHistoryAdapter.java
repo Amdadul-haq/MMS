@@ -4,9 +4,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.mosque_management_system.R;
 import com.example.mosque_management_system.models.DonationRequest;
+
 import java.util.List;
 
 public class DonationHistoryAdapter extends RecyclerView.Adapter<DonationHistoryAdapter.DonationViewHolder> {
@@ -27,7 +30,6 @@ public class DonationHistoryAdapter extends RecyclerView.Adapter<DonationHistory
     public void onBindViewHolder(DonationViewHolder holder, int position) {
         DonationRequest donation = donationList.get(position);
 
-        // Bind data to the views
         holder.donorNameTextView.setText(donation.getDonorName());
         holder.donationTypeTextView.setText(donation.getDonationType());
         holder.amountTextView.setText(donation.getAmount());
@@ -40,10 +42,14 @@ public class DonationHistoryAdapter extends RecyclerView.Adapter<DonationHistory
         return donationList.size();
     }
 
-    // ViewHolder class to hold the views for each row in the RecyclerView
-    public static class DonationViewHolder extends RecyclerView.ViewHolder {
+    public void updateList(List<DonationRequest> filteredList) {
+        this.donationList = filteredList;
+        notifyDataSetChanged();
+    }
 
+    public static class DonationViewHolder extends RecyclerView.ViewHolder {
         TextView donorNameTextView, donationTypeTextView, amountTextView, donationMonthTextView, paymentMethodTextView;
+
         public DonationViewHolder(View itemView) {
             super(itemView);
             donorNameTextView = itemView.findViewById(R.id.donorNameTextView);
