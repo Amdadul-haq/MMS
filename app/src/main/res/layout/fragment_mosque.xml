@@ -18,7 +18,7 @@
             android:layout_height="200dp"
             android:scaleType="centerCrop"
             android:contentDescription="Mosque header image"
-            android:src="@drawable/mosque_header"
+            android:src="@drawable/mosque_resize_img"
             app:layout_constraintTop_toTopOf="parent"
             android:alpha="0.9" />
 
