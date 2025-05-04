@@ -49,6 +49,7 @@
                 android:textSize="16sp"
                 android:padding="12dp"
                 android:inputType="textPersonName"
+                android:enabled="false"
                 android:importantForAccessibility="yes"
                 android:contentDescription="Donor Name"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -91,7 +92,6 @@
             android:background="@android:color/white"
             android:padding="12dp"
             android:importantForAccessibility="yes"
-            android:entries="@array/donation_months"
             android:contentDescription="Donation Month"/>
 
         <!-- Amount -->

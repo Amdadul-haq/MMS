@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -23,6 +24,12 @@ import com.example.mosque_management_system.api.DonationAPI;
 import com.example.mosque_management_system.models.DonationRequest;
 import com.example.mosque_management_system.models.DonationResponse;
 import com.example.mosque_management_system.network.RetrofitClient;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -58,15 +65,39 @@ public class DonateFragment extends Fragment {
         radioGroupPayment = view.findViewById(R.id.radioGroupPayment);
         btnContinue = view.findViewById(R.id.btnContinue);
 
-        // Initialize Retrofit API
+        // Populate Donation Month Spinner dynamically
+        List<String> monthList = getNextTwelveMonths();
+        ArrayAdapter<String> monthAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, monthList);
+        monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerDonationMonth.setAdapter(monthAdapter);
+
+        // Get token and name from SharedPreferences
         SharedPreferences prefs = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
         String token = prefs.getString("jwt_token", null);
+        String fullName = prefs.getString("fullName", "");
 
+        // Pre-fill donor name
+        etDonorName.setText(fullName);
+
+        // Initialize Retrofit API
         Retrofit retrofit = RetrofitClient.getRetrofitInstance(token);
         donationAPI = retrofit.create(DonationAPI.class);
 
         // Continue Button Click
         btnContinue.setOnClickListener(v -> handleDonation());
+    }
+
+    private List<String> getNextTwelveMonths() {
+        List<String> months = new ArrayList<>();
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("MMMM yyyy", Locale.getDefault());
+
+        for (int i = 0; i < 12; i++) {
+            months.add(sdf.format(calendar.getTime()));
+            calendar.add(Calendar.MONTH, 1);
+        }
+
+        return months;
     }
 
     private void handleDonation() {
@@ -86,13 +117,7 @@ public class DonateFragment extends Fragment {
             return;
         }
 
-        View rootView = getView();
-        if (rootView == null) {
-            Toast.makeText(getActivity(), "Unexpected error occurred", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        RadioButton selectedPaymentButton = rootView.findViewById(selectedPaymentId);
+        RadioButton selectedPaymentButton = getView().findViewById(selectedPaymentId);
         String paymentMethod = selectedPaymentButton.getText().toString();
 
         if (paymentMethod.equalsIgnoreCase("By Hand")) {
@@ -120,7 +145,7 @@ public class DonateFragment extends Fragment {
             @Override
             public void onResponse(Call<DonationResponse> call, Response<DonationResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    Toast.makeText(getActivity(), "Donation Successful!", Toast.LENGTH_SHORT).show();
+                    showSuccessDialog();
                 } else {
                     Toast.makeText(getActivity(), "Failed to submit donation", Toast.LENGTH_SHORT).show();
                 }
@@ -131,5 +156,28 @@ public class DonateFragment extends Fragment {
                 Toast.makeText(getActivity(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void showSuccessDialog() {
+        View dialogView = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_success, null);
+        AlertDialog successDialog = new AlertDialog.Builder(getActivity(), android.R.style.Theme_Material_Light_NoActionBar_Fullscreen)
+                .setView(dialogView)
+                .setCancelable(false)
+                .create();
+
+        Button btnDone = dialogView.findViewById(R.id.btnDone);
+        btnDone.setOnClickListener(v -> {
+            successDialog.dismiss();
+            clearFormFields();
+        });
+
+        successDialog.show();
+    }
+
+    private void clearFormFields() {
+        etAmount.setText("");
+        radioGroupPayment.clearCheck();
+        spinnerDonationType.setSelection(0);
+        spinnerDonationMonth.setSelection(0);
     }
 }

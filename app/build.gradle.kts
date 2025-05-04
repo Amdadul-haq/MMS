@@ -49,5 +49,7 @@ dependencies {
     annotationProcessor(libs.compiler)
     implementation(libs.viewpager2)
     implementation(libs.dotsindicator) // For dots indicator
+    implementation(libs.lottie)
+
 
 }
