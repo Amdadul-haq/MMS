@@ -39,4 +39,5 @@
         android:backgroundTint="@color/primaryColor"
         android:textColor="@android:color/white"
         android:fontFamily="@font/poppins" />
+
 </LinearLayout>
