@@ -2,6 +2,7 @@ package com.example.mosque_management_system.fragments;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,9 @@ import com.example.mosque_management_system.api.AuthAPI;
 import com.example.mosque_management_system.models.SignupRequest;
 import com.example.mosque_management_system.models.SignupResponse;
 import com.example.mosque_management_system.network.RetrofitClient;
+
+import org.json.JSONObject;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -72,7 +76,26 @@ public class SignupFragment extends Fragment {
                     Toast.makeText(getActivity(), "Signup Successful!", Toast.LENGTH_SHORT).show();
                     ((MainActivity) getActivity()).loadFragment(new LoginFragment());
                 } else {
-                    Toast.makeText(getActivity(), "Signup Failed!", Toast.LENGTH_SHORT).show();
+                    try {
+                        String errorBody = response.errorBody().string();
+                        Log.e("SIGNUP_ERROR", errorBody);
+
+                        // Try to parse JSON error and show message
+                        String errorMessage = "Signup Failed!";
+                        try {
+                            JSONObject jsonObject = new JSONObject(errorBody);
+                            if (jsonObject.has("message")) {
+                                errorMessage = "Signup Failed: " + jsonObject.getString("message");
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                        Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_LONG).show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Toast.makeText(getActivity(), "Signup Failed!", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
 
@@ -82,4 +105,5 @@ public class SignupFragment extends Fragment {
             }
         });
     }
+
 }
