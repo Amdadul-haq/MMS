@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="32dp">
+
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Join or Create Your Mosque"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/poppins"
+        android:gravity="center"
+        />
+
+    <Button
+        android:id="@+id/btnCreateMosque"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="➕ Create Mosque"
+        android:backgroundTint="@color/colorAccent"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/poppins"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btnJoinMosque"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="🔍 Join Mosque"
+        android:backgroundTint="@color/primaryColor"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/poppins" />
+</LinearLayout>

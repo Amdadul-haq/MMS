@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.mosque_management_system.DashboardActivity;
 import com.example.mosque_management_system.MainActivity;
+import com.example.mosque_management_system.MosqueAccessActivity;
 import com.example.mosque_management_system.R;
 import com.example.mosque_management_system.api.AuthAPI;
 import com.example.mosque_management_system.models.LoginRequest;
@@ -93,7 +94,7 @@ public class LoginFragment extends Fragment {
 
                     Toast.makeText(getActivity(), "Login Successful!", Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(getActivity(), DashboardActivity.class);
+                    Intent intent = new Intent(getActivity(), MosqueAccessActivity.class);
                     startActivity(intent);
                     requireActivity().finish();
                 } else {

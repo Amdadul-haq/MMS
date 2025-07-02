@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create Mosque"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/poppins" />
+
+        <EditText
+            android:id="@+id/mosqueNameInput"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Mosque Name"
+            android:background="@drawable/rounded_edittext"
+            android:paddingHorizontal="16dp"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_hint"
+            android:fontFamily="@font/poppins"
+            android:layout_marginBottom="12dp" />
+
+        <EditText
+            android:id="@+id/mosqueAddressInput"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Mosque Address"
+            android:background="@drawable/rounded_edittext"
+            android:paddingHorizontal="16dp"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_hint"
+            android:fontFamily="@font/poppins"
+            android:layout_marginBottom="12dp" />
+
+        <EditText
+            android:id="@+id/villageInput"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Village"
+            android:background="@drawable/rounded_edittext"
+            android:paddingHorizontal="16dp"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_hint"
+            android:fontFamily="@font/poppins"
+            android:layout_marginBottom="12dp" />
+
+        <EditText
+            android:id="@+id/unionInput"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Union"
+            android:background="@drawable/rounded_edittext"
+            android:paddingHorizontal="16dp"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_hint"
+            android:fontFamily="@font/poppins"
+            android:layout_marginBottom="12dp" />
+
+        <EditText
+            android:id="@+id/upazilaInput"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Upazila"
+            android:background="@drawable/rounded_edittext"
+            android:paddingHorizontal="16dp"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_hint"
+            android:fontFamily="@font/poppins"
+            android:layout_marginBottom="12dp" />
+
+        <EditText
+            android:id="@+id/zillaInput"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Zilla"
+            android:background="@drawable/rounded_edittext"
+            android:paddingHorizontal="16dp"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_hint"
+            android:fontFamily="@font/poppins"
+            android:layout_marginBottom="12dp" />
+
+        <EditText
+            android:id="@+id/imamNameInput"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Imam Name"
+            android:background="@drawable/rounded_edittext"
+            android:paddingHorizontal="16dp"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_hint"
+            android:fontFamily="@font/poppins"
+            android:layout_marginBottom="8dp" />
+    </LinearLayout>
+</ScrollView>

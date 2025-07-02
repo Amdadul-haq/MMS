@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
     public void navigateToDashboard() {
-        Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
+        Intent intent = new Intent(MainActivity.this, MosqueAccessActivity.class);
         startActivity(intent);
         finish(); // Finish MainActivity so user can't go back to login page
     }
