@@ -26,7 +26,7 @@ public class SplashActivity extends AppCompatActivity {
 
         // Delay and move to MainActivity
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+            Intent intent = new Intent(SplashActivity.this, RoleSelectionActivity.class);
             startActivity(intent);
             finish();
         }, 4000);
