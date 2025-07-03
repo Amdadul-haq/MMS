@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mosque_management_system.admin.AdminDashboardActivity;
 import com.example.mosque_management_system.api.MosqueAPI;
 import com.example.mosque_management_system.models.CreateMosqueResponse;
 import com.example.mosque_management_system.models.Mosque;
@@ -91,7 +92,7 @@ public class CreateMosqueActivity extends AppCompatActivity {
 
                         Toast.makeText(CreateMosqueActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
 
-                        Intent intent = new Intent(CreateMosqueActivity.this, DashboardActivity.class);
+                        Intent intent = new Intent(CreateMosqueActivity.this, AdminDashboardActivity.class);
                         intent.putExtra("mosqueId", response.body().getMosqueId());
                         intent.putExtra("mosqueCode", response.body().getMosqueCode());
                         startActivity(intent);
