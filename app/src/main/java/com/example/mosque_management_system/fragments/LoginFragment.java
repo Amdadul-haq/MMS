@@ -22,6 +22,7 @@ import com.example.mosque_management_system.DashboardActivity;
 import com.example.mosque_management_system.MainActivity;
 import com.example.mosque_management_system.MosqueAccessActivity;
 import com.example.mosque_management_system.R;
+import com.example.mosque_management_system.admin.AdminDashboardActivity;
 import com.example.mosque_management_system.api.AuthAPI;
 import com.example.mosque_management_system.models.LoginRequest;
 import com.example.mosque_management_system.models.LoginResponse;
@@ -57,6 +58,7 @@ public class LoginFragment extends Fragment {
 
         return view;
     }
+
     private void loginUser() {
         String email = emailInput.getText().toString().trim();
         String password = passwordInput.getText().toString().trim();
@@ -66,7 +68,6 @@ public class LoginFragment extends Fragment {
             return;
         }
 
-        // Initialize loading dialog
         Dialog loadingDialog = new Dialog(getActivity());
         loadingDialog.setContentView(R.layout.progress_dialog);
         loadingDialog.setCancelable(false);
@@ -84,17 +85,24 @@ public class LoginFragment extends Fragment {
                 if (response.isSuccessful() && response.body() != null && response.body().isSuccess()) {
                     String token = response.body().getToken();
                     String fullName = response.body().getFullName();
+                    boolean isAdmin = response.body().isAdmin();
 
                     SharedPreferences prefs = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = prefs.edit();
                     editor.putBoolean("isLoggedIn", true);
                     editor.putString("jwt_token", token);
                     editor.putString("fullName", fullName);
+                    editor.putBoolean("isAdmin", isAdmin);
                     editor.apply();
 
                     Toast.makeText(getActivity(), "Login Successful!", Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(getActivity(), MosqueAccessActivity.class);
+                    Intent intent;
+                    if (isAdmin) {
+                        intent = new Intent(getActivity(), AdminDashboardActivity.class);
+                    } else {
+                        intent = new Intent(getActivity(), MosqueAccessActivity.class);
+                    }
                     startActivity(intent);
                     requireActivity().finish();
                 } else {
@@ -109,6 +117,4 @@ public class LoginFragment extends Fragment {
             }
         });
     }
-
 }
-
