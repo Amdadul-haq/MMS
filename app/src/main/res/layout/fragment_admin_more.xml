@@ -72,5 +72,21 @@
                 android:textSize="16sp"
                 android:textColor="@color/black"/>
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/layoutJoinRequests"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:orientation="horizontal"
+            android:clickable="true"
+            android:focusable="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="See Join Requests"
+                android:textSize="16sp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+
     </LinearLayout>
 </ScrollView>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_gray">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/joinMosqueTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Join a Mosque"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:paddingBottom="8dp" />
+
+        <!-- Search Bar -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:radius="12dp"
+            android:elevation="4dp">
+
+            <EditText
+                android:id="@+id/searchMosqueInput"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Search mosque by name or code"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:background="@android:color/transparent"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textColorHint="@color/dark_gray" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Mosque List -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mosqueRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:paddingBottom="8dp" />
+
+        <!-- Note (Optional) -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tap a mosque to send join request."
+            android:textSize="14sp"
+            android:textColor="@color/dark_gray"
+            android:gravity="center"
+            android:paddingTop="4dp" />
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -23,12 +23,8 @@ public class MosqueAccessActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-//        btnJoinMosque.setOnClickListener(v -> {
-//            Intent intent = new Intent(MosqueAccessActivity.this, JoinMosqueActivity.class);
-//            startActivity(intent);
-//        });
         btnJoinMosque.setOnClickListener(v -> {
-            Intent intent = new Intent(MosqueAccessActivity.this, DashboardActivity.class);
+            Intent intent = new Intent(MosqueAccessActivity.this, JoinMosqueActivity.class);
             startActivity(intent);
         });
     }

@@ -17,18 +17,18 @@
         android:theme="@style/Theme.Mosque_Management_System"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
+        <activity
+            android:name=".JoinMosqueActivity"
+            android:exported="false" />
         <activity
             android:name=".DashboardActivity"
             android:exported="false" />
         <activity
             android:name=".admin.AdminDashboardActivity"
             android:exported="false" />
-
         <activity
             android:name=".CreateMosqueActivity"
             android:exported="false" />
-
         <activity
             android:name=".MosqueAccessActivity"
             android:exported="false" />

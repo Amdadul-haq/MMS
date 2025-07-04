@@ -4,6 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class Mosque {
 
+    @SerializedName("_id")
+    private String id;
+
     @SerializedName("name")
     private String name;
 
@@ -35,5 +38,36 @@ public class Mosque {
         this.imamName = imamName;
     }
 
-    // Getters and setters if needed (optional)
+    // ✅ Add these getters:
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getVillage() {
+        return village;
+    }
+
+    public String getUnionName() {
+        return unionName;
+    }
+
+    public String getUpazila() {
+        return upazila;
+    }
+
+    public String getZilla() {
+        return zilla;
+    }
+
+    public String getImamName() {
+        return imamName;
+    }
 }
