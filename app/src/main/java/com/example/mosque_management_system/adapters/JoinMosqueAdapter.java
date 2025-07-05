@@ -57,6 +57,7 @@ public class JoinMosqueAdapter extends RecyclerView.Adapter<JoinMosqueAdapter.Vi
             holder.btnJoinMosque.setOnClickListener(v -> {
                 Intent intent = new Intent(context, DashboardActivity.class);
                 intent.putExtra("mosqueId", mosque.getId());
+                intent.putExtra("mosqueName", mosque.getName());
                 context.startActivity(intent);
             });
         } else {

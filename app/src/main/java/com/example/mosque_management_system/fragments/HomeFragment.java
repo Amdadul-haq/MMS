@@ -76,7 +76,11 @@ public class HomeFragment extends Fragment {
         // Set initial values
         tvGreeting.setText("Assalamu Alaikum,");
         tvUserName.setText(getCurrentUserName());
-        tvMosqueName.setText("Khiarpara Jame Moshjid");
+
+        SharedPreferences prefs = getActivity().getSharedPreferences("MosquePrefs", Context.MODE_PRIVATE);
+        String mosqueName = prefs.getString("mosqueName", "Your Mosque");
+        tvMosqueName.setText(mosqueName);
+
         tvDailyHadith.setText("“The best among you are those who have the best manners and character.” – Bukhari");
 
         // Start clock updates

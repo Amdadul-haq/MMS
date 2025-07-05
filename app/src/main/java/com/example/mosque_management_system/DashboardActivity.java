@@ -1,5 +1,6 @@
 package com.example.mosque_management_system;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,18 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+        // ✅ Save passed mosqueName and mosqueId (if present)
+        String mosqueName = getIntent().getStringExtra("mosqueName");
+        String mosqueId = getIntent().getStringExtra("mosqueId");
+
+        if (mosqueName != null && mosqueId != null) {
+            SharedPreferences prefs = getSharedPreferences("MosquePrefs", MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("mosqueName", mosqueName);
+            editor.putString("mosqueId", mosqueId);
+            editor.apply();
+        }
 
         // Initialize views
         bottomNavigationView = findViewById(R.id.bottom_navigation);
