@@ -28,34 +28,6 @@ public class AdminDashboardActivity extends AppCompatActivity {
             loadFragment(new AdminHomeFragment());
         }
 
-//        adminBottomNav.setOnItemSelectedListener(item -> {
-//            Fragment selectedFragment = null;
-//
-//            switch (item.getItemId()) {
-//                case R.id.nav_admin_home:
-//                    selectedFragment = new AdminHomeFragment();
-//                    break;
-//                case R.id.nav_finance:
-//                    selectedFragment = new RevenueExpenseFragment();
-//                    break;
-//                case R.id.nav_announcements:
-//                    selectedFragment = new AnnouncementManagementFragment();
-//                    break;
-//                case R.id.nav_events:
-//                    selectedFragment = new EventManagementFragment();
-//                    break;
-//                case R.id.nav_more:
-//                    selectedFragment = new AdminMoreFragment();
-//                    break;
-//            }
-//
-//            if (selectedFragment != null) {
-//                loadFragment(selectedFragment);
-//                return true;
-//            }
-//            return false;
-//        });
-
         adminBottomNav.setOnItemSelectedListener(item -> {
             Fragment selectedFragment = null;
             int id = item.getItemId();

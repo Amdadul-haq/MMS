@@ -28,6 +28,9 @@ public class Mosque {
     @SerializedName("imamName")
     private String imamName;
 
+    @SerializedName("isMember")  // ✅ New field from backend
+    private boolean isMember;
+
     public Mosque(String name, String address, String village, String unionName, String upazila, String zilla, String imamName) {
         this.name = name;
         this.address = address;
@@ -38,7 +41,7 @@ public class Mosque {
         this.imamName = imamName;
     }
 
-    // ✅ Add these getters:
+    // ✅ Getters
     public String getId() {
         return id;
     }
@@ -69,5 +72,9 @@ public class Mosque {
 
     public String getImamName() {
         return imamName;
+    }
+
+    public boolean isMember() {
+        return isMember;
     }
 }
