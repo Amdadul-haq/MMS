@@ -38,6 +38,9 @@ public interface MosqueAPI {
 
     @PUT("api/join-requests/reject/{requestId}")
     Call<GenericResponse> rejectJoinRequest(@Path("requestId") String requestId);
+    @GET("api/mosques/{id}")
+    Call<Mosque> getMosqueById(@Path("id") String mosqueId);
+
 
 
 }
