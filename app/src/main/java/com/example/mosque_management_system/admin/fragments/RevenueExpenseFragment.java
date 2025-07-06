@@ -1,7 +1,5 @@
 package com.example.mosque_management_system.admin.fragments;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;

@@ -1,20 +1,17 @@
 package com.example.mosque_management_system.fragments;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.view.*;
+import android.widget.*;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.annotation.*;
 import androidx.fragment.app.Fragment;
 
 import com.example.mosque_management_system.R;
 import com.example.mosque_management_system.models.Mosque;
 import com.example.mosque_management_system.repository.MosqueRepository;
 import com.google.android.material.appbar.MaterialToolbar;
+
 
 public class ImamInfoFragment extends Fragment {
 

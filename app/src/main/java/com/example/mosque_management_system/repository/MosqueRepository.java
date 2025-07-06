@@ -4,9 +4,7 @@ import com.example.mosque_management_system.api.MosqueAPI;
 import com.example.mosque_management_system.models.Mosque;
 import com.example.mosque_management_system.network.RetrofitClient;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import retrofit2.*;
 
 public class MosqueRepository {
     private MosqueAPI mosqueApi;

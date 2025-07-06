@@ -1,7 +1,6 @@
 package com.example.mosque_management_system;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -16,11 +15,9 @@ import com.example.mosque_management_system.api.MosqueAPI;
 import com.example.mosque_management_system.models.CreateMosqueResponse;
 import com.example.mosque_management_system.models.Mosque;
 import com.example.mosque_management_system.network.RetrofitClient;
+import com.example.mosque_management_system.utils.PreferenceHelper;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
+import retrofit2.*;
 
 public class CreateMosqueActivity extends AppCompatActivity {
 
@@ -44,8 +41,7 @@ public class CreateMosqueActivity extends AppCompatActivity {
         imamNameInput = findViewById(R.id.imamNameInput);
         btnCreateMosqueSubmit = findViewById(R.id.btnCreateMosqueSubmit);
 
-        SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
-        token = prefs.getString("jwt_token", null);
+        token = PreferenceHelper.getToken(this);
 
         if (token == null) {
             Toast.makeText(this, "You are not logged in!", Toast.LENGTH_SHORT).show();

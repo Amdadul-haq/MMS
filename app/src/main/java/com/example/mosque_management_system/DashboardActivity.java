@@ -1,7 +1,5 @@
 package com.example.mosque_management_system;
 
-import static android.content.Intent.getIntent;
-
 import com.example.mosque_management_system.utils.PreferenceHelper;
 
 import android.os.Bundle;

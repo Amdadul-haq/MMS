@@ -1,8 +1,6 @@
 package com.example.mosque_management_system;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,12 +14,9 @@ import com.example.mosque_management_system.models.MosqueListResponse;
 import com.example.mosque_management_system.network.RetrofitClient;
 import com.example.mosque_management_system.utils.PreferenceHelper;
 
-import java.util.List;
+import java.util.*;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
+import retrofit2.*;
 
 public class JoinMosqueActivity extends AppCompatActivity {
 

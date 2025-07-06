@@ -3,30 +3,21 @@ package com.example.mosque_management_system.fragments;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.view.*;
+import android.widget.*;
+
+import androidx.annotation.*;
 import androidx.fragment.app.Fragment;
 
-import com.example.mosque_management_system.MainActivity;
-import com.example.mosque_management_system.R;
+import com.example.mosque_management_system.*;
 import com.example.mosque_management_system.api.AuthAPI;
-import com.example.mosque_management_system.models.SignupRequest;
-import com.example.mosque_management_system.models.SignupResponse;
+import com.example.mosque_management_system.models.*;
 import com.example.mosque_management_system.network.RetrofitClient;
 
 import org.json.JSONObject;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
+import retrofit2.*;
+
 
 public class SignupFragment extends Fragment {
 

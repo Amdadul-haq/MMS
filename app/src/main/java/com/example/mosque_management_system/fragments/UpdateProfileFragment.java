@@ -6,15 +6,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -28,11 +25,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.mosque_management_system.R;
 import com.example.mosque_management_system.api.UserAPI;
-import com.example.mosque_management_system.models.UserProfileRequest;
 import com.example.mosque_management_system.models.UserProfileResponse;
 import com.example.mosque_management_system.network.RetrofitClient;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 

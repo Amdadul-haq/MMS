@@ -1,32 +1,24 @@
 package com.example.mosque_management_system.admin.fragments;
 
-import android.content.Context;
-import android.content.SharedPreferences;
+import android.content.*;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.annotation.*;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.*;
 
-import com.example.mosque_management_system.R;
+import com.example.mosque_management_system.*;
 import com.example.mosque_management_system.adapters.JoinRequestAdapter;
 import com.example.mosque_management_system.api.MosqueAPI;
-import com.example.mosque_management_system.models.JoinRequest;
-import com.example.mosque_management_system.models.JoinRequestListResponse;
+import com.example.mosque_management_system.models.*;
 import com.example.mosque_management_system.network.RetrofitClient;
 
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
+import retrofit2.*;
+
 
 public class JoinRequestListFragment extends Fragment {
 

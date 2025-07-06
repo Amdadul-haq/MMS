@@ -66,10 +66,6 @@ public class MosqueFragment extends Fragment {
                     .start();
         }
 
-        // Update mosque info card texts dynamically if needed
-        // For example, you can set mosque name & village here:
-        // TextView tvMosqueName = mosqueInfoCard.findViewById(R.id.tvMosqueName);
-        // tvMosqueName.setText(currentMosque != null ? currentMosque.getName() : "No Mosque Selected");
 
         // Imam Info Card click
         cardImamInfo.setOnClickListener(v -> {
