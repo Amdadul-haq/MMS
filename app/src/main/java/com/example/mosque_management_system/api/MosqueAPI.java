@@ -24,6 +24,10 @@ public interface MosqueAPI {
     // ✅ New: fetch all mosques
     @GET("api/mosques")
     Call<MosqueListResponse> getAllMosques();
+    // ✅ Fetch admin's created mosque
+    @GET("api/mosques/my-mosque")
+    Call<Mosque> getMyMosque();
+
 
     // ✅ New: send join request
     @POST("api/join-requests/send")

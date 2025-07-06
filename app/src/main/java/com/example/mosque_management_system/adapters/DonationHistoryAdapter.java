@@ -56,7 +56,7 @@ public class DonationHistoryAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
             donationHolder.donorNameTextView.setText(donation.getDonorName());
             donationHolder.donationTypeTextView.setText(donation.getDonationType());
-            donationHolder.amountTextView.setText(donation.getAmount());
+            donationHolder.amountTextView.setText(String.valueOf(donation.getAmount()));
             donationHolder.donationMonthTextView.setText(donation.getDonationMonth());
             donationHolder.paymentMethodTextView.setText(donation.getPaymentMethod());
         }

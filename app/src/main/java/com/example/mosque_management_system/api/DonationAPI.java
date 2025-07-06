@@ -2,6 +2,7 @@ package com.example.mosque_management_system.api;
 
 import com.example.mosque_management_system.models.DonationRequest;
 import com.example.mosque_management_system.models.DonationResponse;
+import com.example.mosque_management_system.models.DonationSummaryResponse;
 import com.example.mosque_management_system.models.PaginatedDonationResponse;
 
 import java.util.List;
@@ -17,8 +18,17 @@ public interface DonationAPI {
     Call<DonationResponse> submitDonation(@Body DonationRequest donationRequest);
     // Updated endpoint to support pagination
     @GET("api/donations")
-    Call<PaginatedDonationResponse> getDonationHistoryWithPagination(
+    Call<PaginatedDonationResponse> getDonationHistoryWithFilters(
             @Query("page") int page,
-            @Query("limit") int limit
+            @Query("size") int size,
+            @Query("month") String month,
+            @Query("type") String type,
+            @Query("minAmount") Double minAmount,
+            @Query("maxAmount") Double maxAmount
     );
+
+
+    @GET("api/donations/summary")
+    Call<DonationSummaryResponse> getMonthlySummary(@Query("month") String month);
+
 }

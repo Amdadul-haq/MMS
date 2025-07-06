@@ -131,27 +131,82 @@ public class DonationHistoryFragment extends Fragment {
             return;
         }
 
-        DonationAPI donationAPI = RetrofitClient.getRetrofitInstance(token).create(DonationAPI.class);
-        Call<PaginatedDonationResponse> call = donationAPI.getDonationHistoryWithPagination(page, PAGE_SIZE);
+        String selectedType = spinnerDonationType.getSelectedItem().toString();
+        String selectedMonth = spinnerDonationMonth.getSelectedItem().toString();
+        String selectedAmountRange = spinnerAmountFilter.getSelectedItem().toString();
 
-        call.enqueue(new Callback<>() {
+        String donationType = selectedType.equals("All") ? null : selectedType;
+        String donationMonth = selectedMonth.equals("All") ? null : selectedMonth;
+
+        double minAmount = 0, maxAmount = 0;
+        boolean useAmountFilter = true;
+
+        switch (selectedAmountRange) {
+            case "Less than 50":
+                maxAmount = 50;
+                break;
+            case "50 to 100":
+                minAmount = 50;
+                maxAmount = 100;
+                break;
+            case "100 to 200":
+                minAmount = 100;
+                maxAmount = 200;
+                break;
+            case "300 to 500":
+                minAmount = 300;
+                maxAmount = 500;
+                break;
+            case "500 to 1000":
+                minAmount = 500;
+                maxAmount = 1000;
+                break;
+            case "More than 1000":
+                minAmount = 1000;
+                break;
+            default:
+                useAmountFilter = false;
+                break;
+        }
+
+        DonationAPI donationAPI = RetrofitClient.getRetrofitInstance(token).create(DonationAPI.class);
+        Call<PaginatedDonationResponse> call = donationAPI.getDonationHistoryWithFilters(
+                page,
+                PAGE_SIZE,
+                donationMonth,
+                donationType,
+                useAmountFilter ? minAmount : null,
+                useAmountFilter && maxAmount > 0 ? maxAmount : null
+        );
+
+        call.enqueue(new Callback<PaginatedDonationResponse>() {
             @Override
             public void onResponse(Call<PaginatedDonationResponse> call, Response<PaginatedDonationResponse> response) {
                 isLoading = false;
                 if (response.isSuccessful() && response.body() != null) {
                     List<DonationRequest> newDonations = response.body().getDonations();
+
+                    if (page == 1) {
+                        fullDonationList.clear(); // 🧹 Clear old data only for fresh load (new filters)
+                    }
+
+                    fullDonationList.addAll(newDonations);
+                    adapter.updateList(fullDonationList); // 🔄 Notify adapter
+
                     if (newDonations.size() < PAGE_SIZE) {
                         isLastPage = true;
-                        adapter.setShowFooter(true); // 👈 show footer instead of Toast
+                        adapter.setShowFooter(true);
                     } else {
-                        adapter.setShowFooter(false); // 👈 hide footer if more pages are expected
+                        adapter.setShowFooter(false);
                     }
-                    fullDonationList.addAll(newDonations);
-                    applyFilter();
-                } else {
+
+                    toggleEmptyState(); // ✅ Show/hide “No data” message
+                }
+                else {
                     Toast.makeText(getContext(), "Failed to load donation history", Toast.LENGTH_SHORT).show();
                 }
             }
+
 
             @Override
             public void onFailure(Call<PaginatedDonationResponse> call, Throwable t) {
@@ -161,54 +216,9 @@ public class DonationHistoryFragment extends Fragment {
         });
     }
 
-    private void applyFilter() {
-        String selectedType = spinnerDonationType.getSelectedItem().toString();
-        String selectedMonth = spinnerDonationMonth.getSelectedItem().toString();
-        String selectedAmountRange = spinnerAmountFilter.getSelectedItem().toString();
 
-        List<DonationRequest> filteredList = new ArrayList<>();
-
-        for (DonationRequest donation : fullDonationList) {
-            boolean matchesType = selectedType.equals("All") || donation.getDonationType().equals(selectedType);
-            boolean matchesMonth = selectedMonth.equals("All") || donation.getDonationMonth().equals(selectedMonth);
-
-            double amount;
-            try {
-                amount = Double.parseDouble(donation.getAmount());
-            } catch (NumberFormatException e) {
-                continue;
-            }
-
-            boolean matchesAmount = true;
-            switch (selectedAmountRange) {
-                case "Less than 50":
-                    matchesAmount = amount < 50;
-                    break;
-                case "50 to 100":
-                    matchesAmount = amount >= 50 && amount <= 100;
-                    break;
-                case "100 to 200":
-                    matchesAmount = amount >= 100 && amount <= 200;
-                    break;
-                case "300 to 500":
-                    matchesAmount = amount >= 300 && amount <= 500;
-                    break;
-                case "500 to 1000":
-                    matchesAmount = amount >= 500 && amount <= 1000;
-                    break;
-                case "More than 1000":
-                    matchesAmount = amount > 1000;
-                    break;
-            }
-
-            if (matchesType && matchesMonth && matchesAmount) {
-                filteredList.add(donation);
-            }
-        }
-
-        adapter.updateList(filteredList);
-
-        if (filteredList.isEmpty()) {
+    private void toggleEmptyState() {
+        if (fullDonationList.isEmpty()) {
             tvNoDonations.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
         } else {
@@ -217,4 +227,3 @@ public class DonationHistoryFragment extends Fragment {
         }
     }
 }
-

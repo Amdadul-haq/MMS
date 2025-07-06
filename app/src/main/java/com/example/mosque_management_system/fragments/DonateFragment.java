@@ -43,10 +43,9 @@ public class DonateFragment extends Fragment {
     private RadioGroup radioGroupPayment;
     private Button btnContinue;
     private DonationAPI donationAPI;
+    private String mosqueId;
 
-    public DonateFragment() {
-        // Required empty public constructor
-    }
+    public DonateFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -65,25 +64,26 @@ public class DonateFragment extends Fragment {
         radioGroupPayment = view.findViewById(R.id.radioGroupPayment);
         btnContinue = view.findViewById(R.id.btnContinue);
 
-        // Populate Donation Month Spinner dynamically
+        // Populate Month Spinner
         List<String> monthList = getNextTwelveMonths();
         ArrayAdapter<String> monthAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, monthList);
         monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerDonationMonth.setAdapter(monthAdapter);
 
-        // Get token and name from SharedPreferences
+        // Get token, name, and mosqueId from SharedPreferences
         SharedPreferences prefs = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
         String token = prefs.getString("jwt_token", null);
         String fullName = prefs.getString("fullName", "");
+        mosqueId = prefs.getString("mosqueId", null); // ✅ get mosqueId
 
         // Pre-fill donor name
         etDonorName.setText(fullName);
 
-        // Initialize Retrofit API
+        // Initialize Retrofit
         Retrofit retrofit = RetrofitClient.getRetrofitInstance(token);
         donationAPI = retrofit.create(DonationAPI.class);
 
-        // Continue Button Click
+        // Button click
         btnContinue.setOnClickListener(v -> handleDonation());
     }
 
@@ -131,14 +131,21 @@ public class DonateFragment extends Fragment {
         new AlertDialog.Builder(getActivity())
                 .setTitle("Confirm Donation")
                 .setMessage("Donor: " + donorName + "\nAmount: " + amount + " BDT\nType: " + donationType + "\nMonth: " + donationMonth + "\n\nAre you sure you want to donate?")
-                .setPositiveButton("Yes", (dialog, which) ->
-                        submitDonation(donorName, amount, donationType, donationMonth, "By Hand"))
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    try {
+                        double amountDouble = Double.parseDouble(amount);
+                        submitDonation(donorName, amountDouble, donationType, donationMonth, "By Hand", mosqueId);
+                    } catch (NumberFormatException e) {
+                        Toast.makeText(getActivity(), "Invalid amount format", Toast.LENGTH_SHORT).show();
+                    }
+                })
                 .setNegativeButton("No", (dialog, which) -> dialog.dismiss())
                 .show();
     }
 
-    private void submitDonation(String donorName, String amount, String donationType, String donationMonth, String paymentMethod) {
-        DonationRequest donationRequest = new DonationRequest(donorName, donationType, donationMonth, amount, paymentMethod);
+    private void submitDonation(String donorName, double amount, String donationType, String donationMonth, String paymentMethod, String mosqueId) {
+        DonationRequest donationRequest = new DonationRequest(donorName, donationType, donationMonth, amount, paymentMethod, mosqueId);
+
         Call<DonationResponse> call = donationAPI.submitDonation(donationRequest);
 
         call.enqueue(new Callback<DonationResponse>() {

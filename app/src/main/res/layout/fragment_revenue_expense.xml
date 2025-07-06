@@ -1,26 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="@color/light_gray">
+    android:background="#F9FAFB"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal">
 
+        <!-- Month Selector -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Month"
+            android:textSize="16sp"
+            android:textColor="#1A2A44"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/poppins_medium" />
+
+        <Spinner
+            android:id="@+id/spinnerMonth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#1A2A44"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Total Donation -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardElevation="8dp"
+            app:cardCornerRadius="16dp"
+            app:strokeColor="#D1D5DB"
+            app:strokeWidth="1dp"
+            android:background="@android:color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total Donations"
+                    android:textSize="18sp"
+                    android:textColor="#1A2A44"
+                    android:fontFamily="@font/poppins_semibold" />
+
+                <TextView
+                    android:id="@+id/tvTotalDonation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="৳ 0"
+                    android:textSize="24sp"
+                    android:textColor="#10B981"
+                    android:fontFamily="@font/poppins_bold"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Expense List Header -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Revenue and Expense Management"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:gravity="center"
-            android:padding="16dp" />
+            android:text="Expenses"
+            android:textSize="18sp"
+            android:textColor="#1F2937"
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_marginBottom="8dp" />
 
-        <!-- Future inputs for adding/viewing revenue/expense -->
+        <!-- RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvExpenses"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:scrollbars="vertical" />
+
+        <!-- Add Expense Button -->
+        <Button
+            android:id="@+id/btnAddExpense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Expense"
+            android:textAllCaps="false"
+            android:backgroundTint="#2563EB"
+            android:textColor="@android:color/white"
+            android:fontFamily="@font/poppins_medium"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Totals Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@android:color/white"
+            android:padding="16dp"
+            android:elevation="2dp"
+            android:layout_marginBottom="16dp"
+            android:clipToPadding="false">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Total Expenses"
+                android:textSize="16sp"
+                android:textColor="#374151"
+                android:fontFamily="@font/poppins_medium" />
+
+            <TextView
+                android:id="@+id/tvTotalExpense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="৳ 0"
+                android:textSize="20sp"
+                android:textColor="#EF4444"
+                android:fontFamily="@font/poppins_bold"
+                android:layout_marginBottom="12dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Remaining Balance"
+                android:textSize="16sp"
+                android:textColor="#374151"
+                android:fontFamily="@font/poppins_medium" />
+
+            <TextView
+                android:id="@+id/tvRemainingBalance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="৳ 0"
+                android:textSize="20sp"
+                android:textColor="#0EA5E9"
+                android:fontFamily="@font/poppins_bold" />
+        </LinearLayout>
+
+        <!-- Save Button -->
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:textAllCaps="false"
+            android:backgroundTint="#10B981"
+            android:textColor="@android:color/white"
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_marginBottom="32dp" />
 
     </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

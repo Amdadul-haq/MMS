@@ -28,9 +28,16 @@ public class Mosque {
     @SerializedName("imamName")
     private String imamName;
 
-    @SerializedName("isMember")  // ✅ New field from backend
+    @SerializedName("mosqueCode")
+    private String mosqueCode;
+
+    @SerializedName("adminId")
+    private String adminId;
+
+    @SerializedName("isMember")
     private boolean isMember;
 
+    // ✅ Constructor for creation
     public Mosque(String name, String address, String village, String unionName, String upazila, String zilla, String imamName) {
         this.name = name;
         this.address = address;
@@ -72,6 +79,14 @@ public class Mosque {
 
     public String getImamName() {
         return imamName;
+    }
+
+    public String getMosqueCode() {
+        return mosqueCode;
+    }
+
+    public String getAdminId() {
+        return adminId;
     }
 
     public boolean isMember() {
