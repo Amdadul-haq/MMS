@@ -14,7 +14,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface DonationAPI {
-    @POST("api/donate")
+    @POST("/api/donate")
     Call<DonationResponse> submitDonation(@Body DonationRequest donationRequest);
     // Updated endpoint to support pagination
     @GET("api/donations")
@@ -24,7 +24,8 @@ public interface DonationAPI {
             @Query("month") String month,
             @Query("type") String type,
             @Query("minAmount") Double minAmount,
-            @Query("maxAmount") Double maxAmount
+            @Query("maxAmount") Double maxAmount,
+            @Query("mosqueId") String mosqueId   // ✅ ADD HERE
     );
 
 

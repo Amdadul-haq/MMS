@@ -27,6 +27,7 @@ import com.example.mosque_management_system.api.AuthAPI;
 import com.example.mosque_management_system.models.LoginRequest;
 import com.example.mosque_management_system.models.LoginResponse;
 import com.example.mosque_management_system.network.RetrofitClient;
+import com.example.mosque_management_system.utils.PreferenceHelper;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -87,13 +88,10 @@ public class LoginFragment extends Fragment {
                     String fullName = response.body().getFullName();
                     boolean isAdmin = response.body().isAdmin();
 
-                    SharedPreferences prefs = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = prefs.edit();
-                    editor.putBoolean("isLoggedIn", true);
-                    editor.putString("jwt_token", token);
-                    editor.putString("fullName", fullName);
-                    editor.putBoolean("isAdmin", isAdmin);
-                    editor.apply();
+                    PreferenceHelper.saveToken(getActivity(), token);
+                    PreferenceHelper.saveFullName(getActivity(), fullName);
+                    PreferenceHelper.saveIsAdmin(getActivity(), isAdmin);
+                    PreferenceHelper.setLoggedIn(getActivity(), true);
 
                     Toast.makeText(getActivity(), "Login Successful!", Toast.LENGTH_SHORT).show();
 

@@ -31,7 +31,6 @@ import com.example.mosque_management_system.api.UserAPI;
 import com.example.mosque_management_system.models.UserProfileRequest;
 import com.example.mosque_management_system.models.UserProfileResponse;
 import com.example.mosque_management_system.network.RetrofitClient;
-import com.example.mosque_management_system.utils.RealPathUtil;
 
 import java.io.File;
 import java.io.IOException;

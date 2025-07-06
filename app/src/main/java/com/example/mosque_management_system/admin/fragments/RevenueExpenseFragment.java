@@ -20,6 +20,7 @@ import com.example.mosque_management_system.R;
 import com.example.mosque_management_system.api.DonationAPI;
 import com.example.mosque_management_system.models.DonationSummaryResponse;
 import com.example.mosque_management_system.network.RetrofitClient;
+import com.example.mosque_management_system.utils.PreferenceHelper;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -64,9 +65,8 @@ public class RevenueExpenseFragment extends Fragment {
         monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMonth.setAdapter(monthAdapter);
 
-        // Get JWT token from SharedPreferences
-        SharedPreferences prefs = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
-        String token = prefs.getString("jwt_token", null);
+        String token = PreferenceHelper.getToken(requireContext());
+
 
         // Setup Retrofit with token
         Retrofit retrofit = RetrofitClient.getRetrofitInstance(token);

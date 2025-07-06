@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,6 +18,7 @@ import com.example.mosque_management_system.api.MosqueAPI;
 import com.example.mosque_management_system.models.JoinRequestBody;
 import com.example.mosque_management_system.models.Mosque;
 import com.example.mosque_management_system.network.RetrofitClient;
+import com.example.mosque_management_system.utils.PreferenceHelper;
 
 import java.util.List;
 
@@ -55,9 +56,8 @@ public class JoinMosqueAdapter extends RecyclerView.Adapter<JoinMosqueAdapter.Vi
         if (mosque.isMember()) {
             holder.btnJoinMosque.setText("Go to Dashboard");
             holder.btnJoinMosque.setOnClickListener(v -> {
+                PreferenceHelper.setMosqueInfo(context, mosque.getId(), mosque.getName());
                 Intent intent = new Intent(context, DashboardActivity.class);
-                intent.putExtra("mosqueId", mosque.getId());
-                intent.putExtra("mosqueName", mosque.getName());
                 context.startActivity(intent);
             });
         } else {

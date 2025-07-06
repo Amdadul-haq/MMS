@@ -2,7 +2,8 @@ package com.example.mosque_management_system;
 
 import static android.content.Intent.getIntent;
 
-import android.content.SharedPreferences;
+import com.example.mosque_management_system.utils.PreferenceHelper;
+
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,11 +28,7 @@ public class DashboardActivity extends AppCompatActivity {
         String mosqueId = getIntent().getStringExtra("mosqueId");
 
         if (mosqueName != null && mosqueId != null) {
-            SharedPreferences prefs = getSharedPreferences("MosquePrefs", MODE_PRIVATE);
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putString("mosqueName", mosqueName);
-            editor.putString("mosqueId", mosqueId);
-            editor.apply();
+            PreferenceHelper.setMosqueInfo(this, mosqueId, mosqueName);
         }
 
         // Initialize views

@@ -71,7 +71,7 @@
             android:padding="12dp"
             android:background="@android:color/white"
             android:importantForAccessibility="yes"
-            android:entries="@array/donation_types"
+            android:entries="@array/donation_types_donate"
             android:contentDescription="Donation Type"/>
 
         <!-- Donation Month -->

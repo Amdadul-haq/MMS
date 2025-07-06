@@ -23,13 +23,20 @@
     <string name="by_hand">By Hand</string>
     <string name="continue_txt">Continue</string>
 
-    <string-array name="donation_types">
-        <item>All</item>
+    <string-array name="donation_types_donate">
         <item>Regular</item>
-        <item>Moushumi Collection</item>
+        <item>Mosuhimu Collection</item>
         <item>Eid Collection</item>
         <item>Others</item>
     </string-array>
+    <string-array name="donation_types_filter">
+        <item>All</item>
+        <item>Regular</item>
+        <item>Mosuhimu Collection</item>
+        <item>Eid Collection</item>
+        <item>Others</item>
+    </string-array>
+
     <string-array name="donation_amount_ranges">
         <item>All</item>
         <item>Less than 50</item>

@@ -24,6 +24,7 @@ import com.example.mosque_management_system.api.DonationAPI;
 import com.example.mosque_management_system.models.DonationRequest;
 import com.example.mosque_management_system.models.PaginatedDonationResponse;
 import com.example.mosque_management_system.network.RetrofitClient;
+import com.example.mosque_management_system.utils.PreferenceHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +69,7 @@ public class DonationHistoryFragment extends Fragment {
 
     private void setupSpinners() {
         ArrayAdapter<CharSequence> typeAdapter = ArrayAdapter.createFromResource(
-                getContext(), R.array.donation_types, android.R.layout.simple_spinner_item);
+                getContext(), R.array.donation_types_filter, android.R.layout.simple_spinner_item);
         typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerDonationType.setAdapter(typeAdapter);
 
@@ -122,9 +123,7 @@ public class DonationHistoryFragment extends Fragment {
 
     private void loadDonationHistory(int page) {
         isLoading = true;
-
-        SharedPreferences prefs = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
-        String token = prefs.getString("jwt_token", null);
+        String token = PreferenceHelper.getToken(requireContext());
 
         if (token == null) {
             Toast.makeText(getContext(), "Token not found. Please login again.", Toast.LENGTH_SHORT).show();
@@ -168,6 +167,12 @@ public class DonationHistoryFragment extends Fragment {
                 useAmountFilter = false;
                 break;
         }
+        String mosqueId = PreferenceHelper.getMosqueId(requireContext());
+
+        if (mosqueId == null) {
+            Toast.makeText(getContext(), "Mosque ID not found", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         DonationAPI donationAPI = RetrofitClient.getRetrofitInstance(token).create(DonationAPI.class);
         Call<PaginatedDonationResponse> call = donationAPI.getDonationHistoryWithFilters(
@@ -176,7 +181,9 @@ public class DonationHistoryFragment extends Fragment {
                 donationMonth,
                 donationType,
                 useAmountFilter ? minAmount : null,
-                useAmountFilter && maxAmount > 0 ? maxAmount : null
+                useAmountFilter && maxAmount > 0 ? maxAmount : null,
+                mosqueId
+
         );
 
         call.enqueue(new Callback<PaginatedDonationResponse>() {

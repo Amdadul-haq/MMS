@@ -14,6 +14,7 @@ import com.example.mosque_management_system.api.MosqueAPI;
 import com.example.mosque_management_system.models.Mosque;
 import com.example.mosque_management_system.models.MosqueListResponse;
 import com.example.mosque_management_system.network.RetrofitClient;
+import com.example.mosque_management_system.utils.PreferenceHelper;
 
 import java.util.List;
 
@@ -33,8 +34,8 @@ public class JoinMosqueActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join_mosque);
 
-        SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
-        token = prefs.getString("jwt_token", null);
+        token = PreferenceHelper.getToken(this);
+
 
         mosqueRecyclerView = findViewById(R.id.mosqueRecyclerView);
         mosqueRecyclerView.setLayoutManager(new LinearLayoutManager(this));

@@ -18,6 +18,7 @@ import com.example.mosque_management_system.admin.fragments.AdminMoreFragment;
 import com.example.mosque_management_system.api.MosqueAPI;
 import com.example.mosque_management_system.models.Mosque;
 import com.example.mosque_management_system.network.RetrofitClient;
+import com.example.mosque_management_system.utils.PreferenceHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import retrofit2.Call;
@@ -72,8 +73,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
     }
 
     private void fetchMyMosque() {
-        SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
-        String token = prefs.getString("jwt_token", null);
+        String token = PreferenceHelper.getToken(this);
 
         if (token == null) {
             Toast.makeText(this, "Token not found, please login again", Toast.LENGTH_SHORT).show();
@@ -88,18 +88,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
             public void onResponse(Call<Mosque> call, Response<Mosque> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     Mosque myMosque = response.body();
-
-                    SharedPreferences.Editor editor = prefs.edit();
-                    editor.putString("myMosqueId", myMosque.getId());
-                    editor.putString("myMosqueName", myMosque.getName());
-                    editor.putString("myMosqueAddress", myMosque.getAddress());
-                    editor.putString("myMosqueVillage", myMosque.getVillage());
-                    editor.putString("myMosqueUnion", myMosque.getUnionName());
-                    editor.putString("myMosqueUpazila", myMosque.getUpazila());
-                    editor.putString("myMosqueZilla", myMosque.getZilla());
-                    editor.putString("myMosqueImamName", myMosque.getImamName());
-                    editor.apply();
-
+                    PreferenceHelper.saveMyMosqueDetails(AdminDashboardActivity.this, myMosque);
                     Log.d("AdminDashboard", "My mosque fetched: " + myMosque.getName());
                 } else {
                     Toast.makeText(AdminDashboardActivity.this, "Failed to fetch mosque info", Toast.LENGTH_SHORT).show();
@@ -112,6 +101,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private void loadFragment(Fragment fragment) {
         getSupportFragmentManager()

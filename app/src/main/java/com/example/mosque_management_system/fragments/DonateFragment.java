@@ -24,6 +24,7 @@ import com.example.mosque_management_system.api.DonationAPI;
 import com.example.mosque_management_system.models.DonationRequest;
 import com.example.mosque_management_system.models.DonationResponse;
 import com.example.mosque_management_system.network.RetrofitClient;
+import com.example.mosque_management_system.utils.PreferenceHelper;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -70,11 +71,9 @@ public class DonateFragment extends Fragment {
         monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerDonationMonth.setAdapter(monthAdapter);
 
-        // Get token, name, and mosqueId from SharedPreferences
-        SharedPreferences prefs = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
-        String token = prefs.getString("jwt_token", null);
-        String fullName = prefs.getString("fullName", "");
-        mosqueId = prefs.getString("mosqueId", null); // ✅ get mosqueId
+        String token = PreferenceHelper.getToken(requireContext());
+        String fullName = PreferenceHelper.getFullName(requireContext());
+        mosqueId = PreferenceHelper.getMosqueId(requireContext());
 
         // Pre-fill donor name
         etDonorName.setText(fullName);
@@ -101,6 +100,12 @@ public class DonateFragment extends Fragment {
     }
 
     private void handleDonation() {
+        if (mosqueId == null) {
+            Toast.makeText(getActivity(), "Mosque ID not found. Please re-select your mosque.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
         String donorName = etDonorName.getText().toString().trim();
         String amount = etAmount.getText().toString().trim();
         String donationType = spinnerDonationType.getSelectedItem().toString();
@@ -125,6 +130,8 @@ public class DonateFragment extends Fragment {
         } else {
             Toast.makeText(getActivity(), paymentMethod + " will be available soon", Toast.LENGTH_SHORT).show();
         }
+        // Inside handleDonation() before showConfirmationDialog
+
     }
 
     private void showConfirmationDialog(String donorName, String amount, String donationType, String donationMonth) {
